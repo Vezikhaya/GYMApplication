@@ -1,0 +1,44 @@
+﻿@model GYMApplication.Models.SchemeMaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SchemeMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SchemeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchemeName)
+        </dd>
+
+      
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Createddate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Createddate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schemebit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schemebit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SchemeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

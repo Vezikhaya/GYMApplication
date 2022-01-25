@@ -1,0 +1,336 @@
+﻿@model GYMApplication.Models.MemberRegistration
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Member Registration</h2>
+
+
+
+
+
+
+<script src="~/Scripts/jquery-1.11.1.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Scripts/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+
+
+
+
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" style="float: none;" role="alert">
+
+        <b>@TempData["Message"]</b>
+
+    </div>
+}
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $("#WorkouttypeID").change(function () {
+            $("#PlantypeID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetPlan")',
+                dataType: 'json',
+                data: { WorkTypeID: $("#WorkouttypeID").val() },
+                success: function (plandata) {
+
+                    $("#PlantypeID").append('<option value="' + "0" + '">' + "Select" + '</option>');
+
+                    $.each(plandata, function (i, plan) {
+                        $("#PlantypeID").append('<option value="' + plan.PlanID + '">' + plan.PlanName + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+
+
+    });
+
+</script>
+
+
+<script type="text/javascript">
+
+    function rebindPlan() {
+
+
+        if ('@ViewData["SelectedPlan"]' != '') {
+
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetPlan")',
+                dataType: 'json',
+                data: {
+                    WorkTypeID: $("#WorkouttypeID").val()
+                },
+                success: function (plandata) {
+
+                    $("#PlantypeID").append('<option value="' + "0" + '">' + "Select" + '</option>');
+
+                    $.each(plandata, function (i, plan) {
+                        $("#PlantypeID").append('<option value="' + plan.PlanID + '">' + plan.PlanName + '</option>');
+                    });
+
+                    if ('@ViewData["SelectedPlan"]' != 0) {
+                        $("#PlantypeID").val('@ViewData["SelectedPlan"]');
+                    }
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve plan.' + ex);
+                }
+            });
+
+
+
+        }
+
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#PlantypeID").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetAmount")',
+                dataType: 'json',
+                data: { PlanID: $("#PlantypeID").val(), WorkTypeID: $("#WorkouttypeID").val() },
+                success: function (amount) {
+                    $("#Amount").val(amount);
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+
+
+</script>
+
+
+
+
+
+@if (TempData["notice"] != null)
+{<div class="alert alert-success" style="float: none;" role="alert">
+        <b>@TempData["notice"]</b>
+    </div>
+
+}
+
+
+@using (Html.BeginForm())
+{
+    //   @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <h4>MemberRegistration</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemberFName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemberFName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MemberFName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemberLName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemberLName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MemberLName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemberMName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemberMName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MemberMName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @readonly = true })
+                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contactno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contactno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contactno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Gender, new[] {
+           new SelectListItem{Text="Male",Value="Male"},
+           new SelectListItem{Text="Female",Value="Female"},
+           new SelectListItem{Text="Other", Value="Other"}
+
+           }, "Select Gender", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlanID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PlanID", null, htmlAttributes: new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PlanID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.PeriodID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PeriodID, new[] {
+
+
+                   new SelectListItem{ Text="Select" , Selected =true, Value ="0"  },
+                   new SelectListItem { Text="3 Month" , Selected =false, Value ="3"  },
+                   new SelectListItem { Text="6 Month" , Selected =false, Value ="6"  },
+                   new SelectListItem { Text="1 Year" , Selected =false, Value ="12"  },
+
+                }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PeriodID)
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.JoiningDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.JoiningDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @readonly = true })
+                @Html.ValidationMessageFor(model => model.JoiningDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () { rebindPlan(); });
+</script>
+@section Scripts {
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#JoiningDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+
+        var d = new Date();
+        $('#DOB').datepicker({
+
+
+            changeMonth: true,
+            changeYear: true,
+            changeday: true,
+            dateFormat: "yy-mm-dd",
+            yearRange: "1980:2015",
+            onSelect: function (selectedDate, ev) {
+                CalculateAge(selectedDate);
+            }
+        });
+
+
+    </script>
+
+    <script type="text/javascript">
+        function CalculateAge(selectedDate) {
+
+            var x = selectedDate.split('-');
+            var curYear = new Date().getUTCFullYear();
+            var age = curYear - x[0];
+            $('#Age').val(age);
+        }
+
+    </script>
+}

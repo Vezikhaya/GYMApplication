@@ -1,0 +1,77 @@
+﻿
+
+@{
+    ViewBag.Title = "Cornfirm";
+    var db = new GYMApplication.Models.ApplicationDbContext();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model GYMApplication.Models.MemberRegistration
+<!--================Home Banner Area =================-->
+<!-- breadcrumb start-->
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <p>Home / Confirmation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
+<!--================ confirmation part start =================-->
+<section class="confirmation_part section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="confirmation_tittle">
+                    <span>Thank you. Your Payment has been received you are officialy new member.</span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lx-4">
+                <div class="single_confirmation_details">
+                    <h4>order info</h4>
+                    <ul>
+                        <li>
+                            <p>order number</p><span>: @Model.MemID</span>
+                        </li>
+                        <li>
+                            <p>data</p><span>: @Model.CreatedDate</span>
+                        </li>
+                        <li>
+                            <p>total</p><span>: @Model.PlantypeID</span>
+                        </li>
+                        <li>
+                            <p> Status</p><span>:ViewBag.Message</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lx-4">
+                <div class="single_confirmation_details">
+                    <h4>Order Recipient</h4>
+                    <ul>
+                        <li>
+                            <p>First Name</p><span>: @Model.MemberFName</span>
+                        </li>
+                        <li>
+                            <p>Last Name</p><span>: @Model.MemberLName</span>
+                        </li>
+                        <li>
+                            <p>Cell</p><span>: @Model.Contactno</span>
+                        </li>
+                        <li>
+                            <p>Email</p><span>: @Model.EmailID</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</section>
+<!--================ confirmation part end =================-->

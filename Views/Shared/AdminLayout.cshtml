@@ -1,0 +1,125 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        .header {
+            background-image: url('../Media/background.jpg');
+            background-size: cover;
+            background-blend-mode: hardlight;
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background-size: cover;
+            background-repeat: repeat-y;
+            background-image: url('../Media/body_bg.jpg');
+            padding: 0;
+            margin: 0;
+        }
+        .nav {
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+        }
+        .tdnav {
+            border: 1px solid;
+            border-color: lightgray;
+            font-family: Arial;
+            font-size: 25px;
+            font-weight: bold;
+            color: #414141;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .tdnav:hover {
+            background-color: #EA8614;
+        }
+        .content {
+            
+        }
+        
+        
+    </style>
+    <link rel="stylesheet" href="~/Content/mystyle.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Page</title>
+</head>
+<body class="body" width="100%">
+    <div width="100%" class="header">
+        <img src="~/Media/logo1.png" width="200" style="border-radius:100%;margin: 20px 0px 20px 10px;" />
+        <button class="tdnav" style="position:absolute;margin-left:65%;margin-top:150px;margin-bottom:10px;border-radius:20px;">Tsilo Masilo</button>
+
+    </div>
+    <div width="100%">
+        <table width="100%" class="nav" border="1">
+            <tr>
+                <td width="5%" class="tdnav" >
+                    <div width="100%"><img src="../Media/homeIcon.png" width="35" /></div>
+</td>
+                <td width="18" class="tdnav">
+                    <div width="100%">ORDERS</div>
+                </td>
+                <td width="18" class="tdnav">
+                    <div width="100%">INVERNTORY</div>
+</td>
+                <td width="18" class="tdnav">
+                    <div width="100%">MEMBERS</div>
+</td>
+                <td width="18" class="tdnav">
+                    <div width="100%">MEETINGS</div>
+</td>
+                <td width="18" class="tdnav">
+                    <div width="100%">CLASSES</div>
+</td>
+                <td width="5%" class="tdnav">
+                    <div width="100%"><img src="../Media/bell_icon.png" width="28" style="border-radius:100%" /></div>
+</td>
+            </tr>
+        </table>
+    </div>
+    <div class="content" width="100%" height="100%">
+        @RenderBody()
+
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Fitness Company</p>
+    </footer>
+    @*
+        <div class="header" style="">
+            <img src="~/Media/mixed.png" style="width:100%">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active"> Home</a></li>
+                    @*<li class="dropdown"><a href="about.html" class="dropbtn"> Pricing</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Prices</a>
+                        <div class="dropdown-content">
+                            <a href="#">Gym Fees</a>
+                            <a href="#">Student Fee</a>
+                        </div>
+                    </li>
+                    <li><a href="contact.html"> Classes</a></li>
+                    <li><a href="books.html"> About Us</a></li>
+                </ul>
+                <div>
+
+                </div>
+            </nav>
+            <div id="Configure_bell">
+                <img src="~/Media/bell_icon.png" stye="width:75px; height:84px;">
+            </div>
+            <div id="sign_inBTN">
+                <input type="button" /> <img src="~/Media/Sign_in.png" stye="width:75px; height:84px;">
+            </div>
+        </div>
+        <div>
+            @RenderBody()
+            
+        </div>
+        <iframe src="https://www.w3schools.com"></iframe>*@
+</body>
+</html>
+

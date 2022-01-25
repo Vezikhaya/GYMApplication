@@ -1,0 +1,104 @@
+﻿@model GYMApplication.Models.PlanMaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlanMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicetaxAmout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicetaxAmout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceTax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceTax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+      
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifyDate)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchemeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchemeID)
+        </dd>
+
+      
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicetaxNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicetaxNo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlanID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

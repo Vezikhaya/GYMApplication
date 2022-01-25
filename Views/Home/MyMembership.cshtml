@@ -1,0 +1,73 @@
+﻿@model IEnumerable<GYMApplication.Models.MemberRegistration>
+
+@{
+    ViewBag.Title = "MyOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var db = new GYMApplication.Models.ApplicationDbContext();
+
+}
+
+<h2 style="text-align:center;color:blue;">Membership Details</h2>
+
+<div class="row container">
+    <table class="table" style="margin-left:20px;">
+        <tr>
+            <th>
+                Membership Number
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberFName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.planmaster.PlanName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JoiningDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PeriodID)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            
+    <tr onclick="MyOrderClicked('@item.MemID')">
+
+        <td>
+            @item.MemID
+        </td>
+        <td>
+            @item.MemberFName
+        </td>
+        <td>
+            @item.planmaster.PlanName
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.JoiningDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PeriodID) Months
+        </td>
+
+
+        <td>
+            R @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+
+
+    </tr>
+        }
+
+    </table>
+
+</div>

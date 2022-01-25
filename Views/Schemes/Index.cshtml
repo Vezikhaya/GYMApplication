@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GYMApplication.Models.SchemeMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SchemeName)
+        </th>
+     
+        <th>
+            @Html.DisplayNameFor(model => model.Createddate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schemebit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchemeName)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Createddate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.schemebit)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SchemeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SchemeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SchemeID })
+        </td>
+    </tr>
+}
+
+</table>
